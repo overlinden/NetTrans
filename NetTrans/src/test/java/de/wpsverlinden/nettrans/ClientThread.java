@@ -16,43 +16,44 @@
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package de.wpsverlinden.nettrans.tests;
+package de.wpsverlinden.nettrans;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.PrintStream;
+import java.io.InputStream;
 
-import de.wpsverlinden.nettrans.Server;
 
-public class ServerThread extends Thread {
+public class ClientThread extends Thread {
 
-	private String port;
-	private File outFile;
-	private PrintStream outStream;
+	private String ip, port;
+	private File inFile;
+	private InputStream inStream;
 
-	public ServerThread(String port, File outfile) {
+	public ClientThread(String ip, String port, File infile) {
+		this.ip = ip;
 		this.port = port;
-		this.outFile = outfile;
+		this.inFile = infile;
 	}
 	
-	public ServerThread(String port, PrintStream outStream) {
+	public ClientThread(String ip, String port, InputStream inStream) {
+		this.ip = ip;
 		this.port = port;
-		this.outStream = outStream;
+		this.inStream = inStream;
 	}
 
 	@Override
 	public void run() {
-		Server srv = null;
-		if (outFile != null) {
-			srv = new Server(port, outFile);	
+		Client cli = null;
+		if (inFile != null) {
+			cli = new Client(ip, port, inFile);	
 		}
-		if (outStream != null) {
-			srv = new Server(port, outStream);
+		if (inStream != null) {
+			cli = new Client(ip, port, inStream);
 		}
 		
 		try {
-			if (srv != null) {
-				srv.run();	
+			if (cli != null) {
+				cli.run();	
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
