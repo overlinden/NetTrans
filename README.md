@@ -1,4 +1,4 @@
-NetTrans
+NetTrans [![Build Status](https://drone.io/github.com/overlinden/NEtTrans/status.png)](https://drone.io/github.com/overlinden/NetTrans/latest)
 ========
 
 File transfer made easy  
@@ -21,3 +21,7 @@ Start the application (client mode):
         <ip>        : ip addess to connect to
         <port>      : port to connect to
         <infile>    : input file name, input from stdin if blanc
+
+
+
+All stable builds can be downloaded here: http://wps-verlinden.de/drone.io/NetTrans/
